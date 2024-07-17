@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,11 +24,12 @@ public class CursosController {
 	@GetMapping(value="buscar")
 	public String buscarCurso(@RequestParam("precioMax") double precio, HttpServletRequest request) {
 		List<CursoDto> cursos=service.preciosCursoMax(precio);
+		//System.out.println("------"+cursos.size()); traza
 		request.setAttribute("cursos", cursos);
 		return "cursos";
 	}
 	//para establecer el vinculo bidireccional entre fomulario y el objeto curso	
-	@GetMapping(value="formAlta")
+	@RequestMapping(value="formAlta")	// request para que acepte peticiones GET y POST
 	public String prepararAlta(Model model) {
 		model.addAttribute("curso", new CursoDto());
 		return "nuevo";
@@ -35,7 +37,7 @@ public class CursosController {
 	
 	@PostMapping(value="alta")
 	public String nuevoCurso(@ModelAttribute CursoDto curso) {
-		return service.nuevo(curso)?"nuevo":"error";
+		return service.nuevo(curso)?"forward:/formAlta":"error"; //forward para transferir la peticion al controller formAlta
 	}
 	
 	@PostMapping(value="eliminar")

@@ -31,6 +31,7 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public List<CursoDto> preciosCursoMax(double precioMax) {
+		//System.out.println("-en el dao"+cursosDao.findByPrecio(precioMax).size());
 		return cursosDao.findByPrecio(precioMax).stream()
 				.map(c->mapeador.cursoEntityToDto(c))
 				.toList(); 

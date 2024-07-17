@@ -9,25 +9,26 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 @Repository
 public class CursosDaoImpl implements CursosDao{
 
-	@PersistenceContext
+	@PersistenceContext		
 	EntityManager eManager;
 	
 	@Override
 	public List<Curso> findByPrecio(double precio) {
 		String jpql="select c from Curso c where c.precio<=?1";
-		TypedQuery<Curso> query=eManager.createQuery(jpql,Curso.class);
+		TypedQuery<Curso> query=eManager.createQuery(jpql, Curso.class);
 		query.setParameter(1, precio);
 		return query.getResultList();
 	}
-
+	@Transactional
 	@Override
 	public void save(Curso curso) {
 		eManager.persist(curso);
 	}
-
+	@Transactional
 	@Override
 	public void delete(String nombre) {
 		String jpql="delete from Curso c where c.nombre=?1";
@@ -40,8 +41,8 @@ public class CursosDaoImpl implements CursosDao{
 	public Curso findByCurso(String nombre) {
 		String jpql="select c from Curso c where c.nombre=:nombre";
 		TypedQuery<Curso> query=eManager.createQuery(jpql, Curso.class);
-		query.setParameter(1, nombre);
-		return query.getSingleResult();
+		query.setParameter("nombre", nombre);
+		return query.getResultList().stream().findFirst().orElse(null);
 	}
 
 }

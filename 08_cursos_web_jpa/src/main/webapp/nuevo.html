@@ -37,6 +37,7 @@ input {
 		<h1>Añadir Nuevo Curso</h1>
 		<form action="alta" method="post">
 			NOMBRE:<input type="text" th:field="${curso.nombre}" ><br>
+			TEMATICA:<input type="text" th:field="${curso.tematica}" ><br>
 			DURACION:<input type="text" th:field="${curso.duracion}" ><br> 
 			PRECIO:<input type="text" th:field="${curso.precio}"> <br>
 			<input type="submit" value="Alta">
