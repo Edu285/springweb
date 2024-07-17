@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de cursos por precio MAXIMO</title>
+<style type="text/css">
+body {
+	color: purple;
+}
+
+h1 {
+	text-align: center;
+}
+
+div {
+	width: 400px;
+	margin: 50px auto;
+	padding: 15px;
+	background-color: smocke;
+	border: 1px solid purple; input { display : block;
+	margin-bottom: 15px;
+}
+
+input {
+	color: purple;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 15px;
+	border: 1px solid purple;
+	padding: 7px;
+	display: block;
+}}
+</style>
+</head>
+<body>
+	<div>
+		<h1>Buscar Cursos con Precios Inferiores a...</h1>
+		<form action="buscar" method="get">
+			PRECIO MAXIMO: <input type="text" name="precioMax"><br>
+			 <input type="submit" value="Buscar">
+		</form>
+	</div>
+</body>
+</html> 
