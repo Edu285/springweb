@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Resultados de Cursos</title>
+</head>
+<body>
+	<h1>CURSOS cuyo precio maximo es:<b th:text="${param.precioMax}"></b></h1>
+	<br>
+	<table border="5" th:if="${cursos}">
+		<tr>
+			<th>NOMBRE</th>
+			<th>TEMATICA</th>
+			<th>DURACION</th>
+			<th>PRECIO</th>
+		</tr>
+	
+		<tr th:each="c:${cursos}">
+			<td th:text="${c.nombre}"></td>
+			<td th:text="${c.tematica}"></td>
+			<td th:text="${c.duracion}"></td>
+			<td th:text="${c.precio}"></td>
+		</tr>
+	</table>
+	<br>
+	<a href="toInicio">VOLVER</a>
+</body>
+</html>

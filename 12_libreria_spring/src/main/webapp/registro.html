@@ -1,0 +1,45 @@
+<%page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="jakarta.tags.core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<center>
+		<h1>Registro</h1>
+		Usuario:<input type="text" id="isbn"><br>
+		Password:<input type="text" id="titulo"><br>
+		Repetir Password:<input type="text" id="repetir"> 
+		Email:<input type="text" id="autor"><br> 
+		Telefono:<input type="text" id="precio"><br> 
+		<input type="button" value="Registrar" id="registrar">
+	</center>
+	<script type="text/javascript">
+		${"#registrar"}.click(function(){
+			if($("password").val()==$("#repetir").val()){
+			var url="FrontController";
+			var params={"operation":"doRegistrar",
+					"usuario":$("#usuario").val();
+					"password":$("#password").val();
+					"email":$("#email").val();
+					"telefono":$("#telefono").val();
+				};	
+			$.get(url.params, function(data){
+				let mensaje;
+				if(data=="true"){
+					//le mandamos a la pagina de login
+					document.location.href="FrontController?operation=toInicio";
+				}else{
+					alert("usuario repetido, debe introducir un usuario unico.");
+				}
+			});
+			}else{
+				
+			}
+		});
+	</script>
+</body>
+</html>
