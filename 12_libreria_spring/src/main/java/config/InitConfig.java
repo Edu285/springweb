@@ -12,7 +12,7 @@ import jakarta.servlet.ServletRegistration;
 import service.config.ServiceConfig;
 
 public class InitConfig implements WebApplicationInitializer {
-	//se ejecuta al iniciarse la aplicacion
+	//se ejecuta al iniciarse la aplicación
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// Registra la clase de configuración del modelo
@@ -24,8 +24,11 @@ public class InitConfig implements WebApplicationInitializer {
 		// Gestiona el ciclo de vida del contexto de aplicación
 		servletContext.addListener(new ContextLoaderListener(rootContext));
 		// Crea y registra el DispatcherServlet
-		ServletRegistration.Dynamic dispatcher=servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
+		ServletRegistration.Dynamic dispatcher =
+				servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
 		dispatcher.setLoadOnStartup(1);
-		dispatcher.addMapping("/"); 
+		dispatcher.addMapping("/");
+
 	}
+
 }

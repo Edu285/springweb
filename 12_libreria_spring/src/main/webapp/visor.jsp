@@ -1,21 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib uri="jakarta.tags.core" prefix="c" %> 
 <!DOCTYPE html>
-<html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
+<b th:text="${session.usuario}"></b>
 	<center>
 		Seleccione Tema:
-		
+		<select id="temaSel" >
 			<option value="0">-Todos-</option>
-			<option value="${t.idTema}">${t.nombreTema}</option>
-			</c:forEach>
-	
+			<option th:each="t:${temas}" th:value="${t.idTema}" th:text="${t.nombreTema}"></option>					
+		</select>
 		<br><br>
 		<div id="tbLibros">
 		
@@ -52,7 +49,7 @@
 		var params={"pos":pos};
 		pintarCarrito(params,"eliminarCarrito");
 	}
-	function pintarCarrito(params){
+	function pintarCarrito(params,url){
 		$.get(url,params,function(data){
 			var tabla="<table border='1'><tr><th>Titulo</th><th>Tematica</th><th>Precio</th><th>Páginas</th><th></th></tr>";
 			$.each(data,function(i,p){
@@ -62,6 +59,8 @@
 			$("#tbCarrito").html(tabla);
 		});
 	}
+		
+	
 	</script>
 </body>
 </html>

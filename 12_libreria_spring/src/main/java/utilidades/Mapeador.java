@@ -19,19 +19,34 @@ public class Mapeador {
 	public Mapeador(TemasDao temasDao) {
 		this.temasDao = temasDao;
 	}
-
-	public TemaDto temaEntityToDto(Tema tema) {
-		return new TemaDto(0,tema.getTema());
+	public  TemaDto temaEntityToDto(Tema tema) {
+		return new TemaDto(tema.getIdTema(),tema.getTema());
 	}
-	
-	public LibroDto libroDtoToEntity(Libro libro) {
+	public  LibroDto libroEntityToDto(Libro libro) {
 		Optional<Tema> opTema=temasDao.findById(libro.getIdTema());
-		return new LibroDto(libro.getIsbn(),libro.getTitulo(),libro.getAutor(),
-				libro.getPrecio(),libro.getPaginas(),temaEntityToDto(opTema.isPresent()?opTema.get():new Tema()));
+		return new LibroDto(libro.getIsbn(),
+						libro.getTitulo(),
+						libro.getAutor(),
+						libro.getPrecio(),
+						libro.getPaginas(),
+						temaEntityToDto(opTema.isPresent()?opTema.get():new Tema())
+						);
+	}
+	public  Libro libroDtoToEntity(LibroDto libro) {
+		return new Libro(libro.getIsbn(),
+				libro.getTitulo(),
+				libro.getAutor(),
+				libro.getPrecio(),
+				libro.getPaginas(),
+				libro.getTemaDto().getIdTema()
+				);
 	}
 	
 	public Cliente clienteDtoToEntity(ClienteDto cliente) {
-		return new Cliente(0,cliente.getUsuario(),cliente.getPassword(),
-				cliente.getEmail(),cliente.getTelefono());
+		return new Cliente(0,
+				cliente.getUsuario(),
+				cliente.getPassword(),
+				cliente.getEmail(),
+				cliente.getTelefono());
 	}
 }

@@ -12,7 +12,7 @@
 		<h1>Registro</h1>
 		Usuario:<input type="text" id="isbn"><br>
 		Password:<input type="text" id="titulo"><br>
-		Repetir Password:<input type="text" id="repetir"> 
+		Repetir Password:<input type="text" id="repetir"><br> 
 		Email:<input type="text" id="autor"><br> 
 		Telefono:<input type="text" id="precio"><br> 
 		<input type="button" value="Registrar" id="registrar">
@@ -20,8 +20,8 @@
 	<script type="text/javascript">
 		${"#registrar"}.click(function(){
 			if($("password").val()==$("#repetir").val()){
-			var url="FrontController";
-			var params={"operation":"doRegistrar",
+			var url="registrarCliente";
+			var params={
 					"usuario":$("#usuario").val();
 					"password":$("#password").val();
 					"email":$("#email").val();
@@ -31,13 +31,13 @@
 				let mensaje;
 				if(data=="true"){
 					//le mandamos a la pagina de login
-					document.location.href="FrontController?operation=toInicio";
+					document.location.href="toLogin";
 				}else{
 					alert("usuario repetido, debe introducir un usuario unico.");
 				}
 			});
 			}else{
-				
+				alert("los campos de contraseña no coinciden!!!")
 			}
 		});
 	</script>
