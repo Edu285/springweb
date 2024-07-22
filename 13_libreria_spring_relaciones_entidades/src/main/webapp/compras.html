@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<center>
+		<h2>Compras del usuario: <b th:text="${session.usuario}"></b></h2>
+		<br>
+		<table border="5">
+			<tr><th>Libro</th><th>Fecha</th></tr>
+			<tr th:each="v:${compras}">
+				<td th:text="${v.tituloLibro}"></td>
+				<td th:text="${v.fecha}"></td>
+			</tr>
+		</table>>
+		<br>
+		<a href="FrontController?operation=doInicio">Volver</a>
+	</center>
+</body>
+</html>
