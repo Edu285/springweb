@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import dao.ClientesDao;
 import dao.VentasDao;
 import entities.Cliente;
-import jakarta.transaction.Transactional;
 import model.ClienteDto;
 import model.VentaDto;
 import utilidades.Mapeador;
@@ -38,7 +37,7 @@ public class ClientesServiceImpl implements ClientesService {
 		}
 		return false;
 	}
-	@Transactional
+	
 	@Override
 	public List<VentaDto> ventasCliente(String usuario) {
 		return ventasDao.findByBuyByUsuario(usuario).stream()
