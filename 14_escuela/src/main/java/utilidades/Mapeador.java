@@ -18,6 +18,13 @@ public class Mapeador {
 				curso.getAlumnos().stream().map(a->alumnoEntityToDto(a)).toList());
 	}
 	
+	public Curso cursoDtoToEntity(CursoDto curso) {
+		return new Curso(0,	curso.getNombre(),
+				curso.getDuracion(),
+				curso.getFechaInicio(),
+				curso.getPrecio());
+	}
+	
 	public AlumnoDto alumnoEntityToDto(Alumno alumno) {
 		return new AlumnoDto(alumno.getUsuario(),
 				alumno.getPassword(),

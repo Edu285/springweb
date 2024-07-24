@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="cursos")
@@ -19,8 +19,8 @@ public class Curso {
 	private int duracion;
 	private LocalDate fechaInicio;
 	private double precio;
-	@ManyToMany(mappedBy = "cursos")
-	private Set<Alumno> alumnos;
+	@OneToMany(mappedBy="curso")
+	private Set<Matricula> matriculas;
 	
 	public Curso(int idCurso, String nombre, int duracion, LocalDate fechaInicio, double precio) {
 		super();
@@ -62,11 +62,10 @@ public class Curso {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	public Set<Alumno> getAlumnos() {
-		return alumnos;
+	public Set<Matricula> getMatriculas() {
+		return matriculas;
 	}
-	public void setAlumnos(Set<Alumno> alumnos) {
-		this.alumnos = alumnos;
+	public void setMatriculas(Set<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
-	
 }

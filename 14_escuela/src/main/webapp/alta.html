@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<center>
+		NOMBRE: <input type="text" id="nombre"><br>
+		DURACION: <input type="number" id="duracion"><br>
+		FECHA DE INICIO: <input type="date" id="fechaInicio"><br>
+		PRECIO: <input type="text" id="precio"><br>
+		<br>
+		<input type="button" value="Alta" id="alta">
+		<br><br>
+		<a href="Inicio">Volver</a>
+	</center>
+	<script type="text/javascript">
+		$("#alta").click(function(){
+			var url="altaCurso";
+			var params={
+					"nombre":$("#nombre").val(),
+					"duracion":$("#duracion").val(),
+					"fechaInicio":$("#fechaInicio").val(),
+					"precio":$("#precio").val()
+					};
+			$.post(url,params,function(data){
+				let mensaje;
+				if(data=="true"){
+					mensaje="Curso añadido!";
+					document.location.href="toInicio";
+				}else{
+					mensaje="No pueden coincidir el Nombre y la Fecha de Inicio!!";
+				}
+				alert(mensaje);
+			});
+		});
+	</script>
+</body>
+</html>
