@@ -10,7 +10,7 @@ import entities.Curso;
 
 public interface CursosDao extends JpaRepository<Curso, Integer> {
 	
-	//@Query("select c from Curso c join c.matriculas m where m.matriculaPk.usuario=?1")
+	//@Query("select c from Curso c join c.matriculas m where m.pk.usuario=?1")
 	@Query("select c from Curso c join c.matriculas m where m.alumno.usuario=?1")
 	List<Curso> findByUsuario(String usuario);
 	@Query("select c from Curso c where c not in (select c from Curso c join c.matriculas m where m.alumno.usuario=?1)")

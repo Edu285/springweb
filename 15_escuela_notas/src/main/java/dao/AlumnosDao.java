@@ -11,7 +11,7 @@ import entities.Alumno;
 public interface AlumnosDao extends JpaRepository<Alumno, String>{
 		//las dos querys son correctas
 		@Query("select distinct(a) from Alumno a join a.matriculas m where m.curso.idCurso=?1")
-		//@Query("select distinct(a) from Alumno a join a.matriculas m where m.matriculaPk.idCurso=?1")
+		//@Query("select distinct(a) from Alumno a join a.matriculas m where m.pk.idCurso=?1")
 		List<Alumno> findByIdCurso(int idCurso);
-		
+				
 }

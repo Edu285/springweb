@@ -4,19 +4,23 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="matriculas")
 public class Matricula {
 	@EmbeddedId
 	private MatriculaPk pk;
 	private double nota;
 	
+	//en una entidad del lado muchos no puede aparecer duplicadas las columnas utilizaremos updatable 
+	// y insertable a falso
 	@ManyToOne()
-	@JoinColumn(name="usuario", referencedColumnName="usuario")
+	@JoinColumn(name="usuario", referencedColumnName="usuario",updatable=false,insertable=false)
     private Alumno alumno;
 	
 	@ManyToOne()
-	@JoinColumn(name="idCurso", referencedColumnName="idCurso")
+	@JoinColumn(name="idCurso", referencedColumnName="idCurso",updatable=false,insertable=false)
 	private Curso curso;
 	
 	public Matricula(MatriculaPk pk, double nota, Alumno alumno, Curso curso) {
