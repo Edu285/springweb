@@ -23,7 +23,7 @@ public class CursosController {
 	@GetMapping(value="buscar")
 	public String buscarCurso(@RequestParam("precioMax") double precio, HttpServletRequest request) {
 		List<Curso> cursos=service.preciosCursoMax(precio);
-		request.setAttribute("cursos", cursos);
+		request.setAttribute("cursos", service.preciosCursoMax(precio));
 		return "cursos";
 	}
 	//para establecer el vinculo bidireccional entre fomulario y el objeto curso	
