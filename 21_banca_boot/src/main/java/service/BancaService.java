@@ -7,7 +7,7 @@ import model.ClienteDto;
 import model.MovimientoDto;
 
 public interface BancaService {
-	boolean ingreso(int numeroCuenta);
+	boolean validarCuenta(int numeroCuenta);
 	void ingreso(int numeroCuenta, double cantidad);
 	void extraccion(int numeroCuenta, double cantidad);
 	void transferencia(int numeroCuentaOrigen, int numeroCuentaDestino, double cantidad);
