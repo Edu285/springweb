@@ -5,6 +5,8 @@ import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -18,19 +20,17 @@ public class Cuenta {
 	@Column(name="tipocuenta")
 	private String tipoCuenta;
 	@ManyToMany() 
-	@JoinTable(name="titulares", joinColumnS=@JoinColumn(name="idCuenta",referencedColumnName="numeroCuenta"),
+	@JoinTable(name="titulares", joinColumns=@JoinColumn(name="idCuenta",referencedColumnName="numeroCuenta"),
 			inverseJoinColumns = @JoinColumn(name="idCliente",referencedColumnName = "dni"))
 	
 	@OneToMany(mappedBy = "cuenta")
 	private Set<Movimiento> movimientos;
 	
-	public Cuenta(int numeroCuenta, double saldo, String tipoCuenta, Set<Cliente> clientes,
-			Set<Movimiento> movimientos) {
+	public Cuenta(int numeroCuenta, double saldo, String tipoCuenta, Set<Movimiento> movimientos) {
 		super();
 		this.numeroCuenta = numeroCuenta;
 		this.saldo = saldo;
 		this.tipoCuenta = tipoCuenta;
-		this.clientes = clientes;
 		this.movimientos = movimientos;
 	}
 
@@ -60,14 +60,6 @@ public class Cuenta {
 
 	public void setTipoCuenta(String tipoCuenta) {
 		this.tipoCuenta = tipoCuenta;
-	}
-
-	public Set<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(Set<Cliente> clientes) {
-		this.clientes = clientes;
 	}
 
 	public Set<Movimiento> getMovimientos() {
