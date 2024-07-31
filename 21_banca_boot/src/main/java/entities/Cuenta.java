@@ -18,7 +18,8 @@ public class Cuenta {
 	@Column(name="tipocuenta")
 	private String tipoCuenta;
 	@ManyToMany() 
-	private Set<Cliente> clientes;
+	@JoinTable(name="titulares", joinColumnS=@JoinColumn(name="idCuenta",referencedColumnName="numeroCuenta"),
+			inverseJoinColumns = @JoinColumn(name="idCliente",referencedColumnName = "dni"))
 	
 	@OneToMany(mappedBy = "cuenta")
 	private Set<Movimiento> movimientos;
